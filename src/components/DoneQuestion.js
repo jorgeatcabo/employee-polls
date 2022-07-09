@@ -2,7 +2,6 @@ import {connect} from 'react-redux'
 
 const DoneQuestion=(props)=>{
 
-    console.log(props.doneQuestions)
     return(
         <div>
             Done Question
