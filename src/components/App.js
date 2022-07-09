@@ -1,9 +1,11 @@
 import { useEffect, Fragment } from "react";
 import { connect } from "react-redux";
 import { handleInitialData } from "../actions/shared";
+import Dashboard from "./Dashboard";
 
 const App = (props) => {
 
+  
   useEffect(() => {
     props.dispatch(handleInitialData());
   }, []);
@@ -11,7 +13,7 @@ const App = (props) => {
 
   return (
       <div>
-        Starter Code
+        <Dashboard/>
       </div>
   );
 };
