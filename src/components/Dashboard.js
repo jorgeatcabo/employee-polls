@@ -46,20 +46,16 @@ const Dashboard=(props)=>{
                  <NewQuestion id={x.id} author={x.author} timestamp={x.timestamp}/>                 
               </Col>
           ))}    
-          </Row>
+            </Row>
 
-          <Row>
-            <Col>
             <h3>Done Questions</h3>
-                <ul>
-                {props.doneQuestions.map((id) => (
-                  <li key={id}>
-                    <DoneQuestion id={id}/>
-                  </li>
-                ))}
-              </ul>
-            </Col>
-          </Row>
+            <Row>
+            {props.doneQuestions.map((x) => (
+              <Col key={x.id} sm={12} md={6} lg={4} xl={4}>
+                 <DoneQuestion id={x.id} author={x.author} timestamp={x.timestamp}/>                 
+              </Col>
+          ))}    
+            </Row>
 
       </Container>
 
