@@ -1,5 +1,5 @@
 import {  saveQuestion } from "../utils/api";
-//import { showLoading, hideLoading } from "react-redux-loading-bar";
+import { showLoading, hideLoading } from "react-redux-loading-bar";
 
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 export const RECEIVE_NEW_QUESTIONS = "RECEIVE_NEW_QUESTIONS";
@@ -13,19 +13,19 @@ function addQuestion(question) {
   };
 }
 
-export function handleAddQuestion(text, replyingTo) {
+export function handleAddQuestion(optionOneText, optionTwoText) {
   return (dispatch, getState) => {
     const { authedUser } = getState();
 
-    //dispatch(showLoading());
+    dispatch(showLoading());
 
     return saveQuestion({
-      text,
+      optionOneText,
+      optionTwoText,
       author: authedUser,
-      replyingTo,
     })
       .then((question) => dispatch(addQuestion(question)))
-      //.then(() => dispatch(hideLoading()));
+      .then(() => dispatch(hideLoading()));
   };
 }
 

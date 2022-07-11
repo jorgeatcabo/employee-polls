@@ -21,8 +21,8 @@ export default function questions(state = {}, action) {
     //           : state[action.id].likes.concat([action.authedUser]),
     //     },
     //   };
-    // case ADD_QUESTION:
-    //   const { question } = action;
+     case ADD_QUESTION:
+       //const { question } = action;
 
     //   let replyingTo = {};
     //   if (question.replyingTo !== null) {
@@ -34,11 +34,10 @@ export default function questions(state = {}, action) {
     //     };
     //   }
 
-    //   return {
-    //     ...state,
-    //     [action.question.id]: action.question,
-    //     ...replyingTo,
-    //   };
+      return {
+        ...state,
+        [action.question.id]: action.question,
+      };
     default:
       return state;
   }

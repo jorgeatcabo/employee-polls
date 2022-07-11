@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { connect } from "react-redux";
-//import { handleAddTweet } from "../actions/tweets";
-//import { useNavigate } from "react-router-dom";
+import { handleAddQuestion } from "../actions/questions";
+import { useNavigate } from "react-router-dom";
 
 const AddQuestion = ({ dispatch, id }) => {
-  //const navigate = useNavigate();
-  const [text, setText] = useState("");
+  const navigate = useNavigate();
 
   const [firstOption, setFirstOption]=useState("")
   const [secondOption, setSecondOption]=useState("")
@@ -17,26 +16,18 @@ const AddQuestion = ({ dispatch, id }) => {
     const handleSecondOption = (e) => {        
       setSecondOption( e.target.value);
     };
-    const handleSubmitClick=(e)=>{
-      e.preventDefault();
-    }
 
-
-  const handleChange = (e) => {
-    const text = e.target.value;
-
-    setText(text);
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-   // dispatch(handleAddTweet(text, id));
+    dispatch(handleAddQuestion(firstOption,secondOption));
 
-    setText("");
+    setFirstOption("");
+    setSecondOption("");
 
     if (!id) {
-      //navigate("/");
+      navigate("/");
     }
   };
 
@@ -73,12 +64,9 @@ const AddQuestion = ({ dispatch, id }) => {
                 <button 
                     type="submit" 
                     className="btn btn-primary"
-                    onClick={handleSubmitClick}
+                    onClick={handleSubmit}
                 >Submit</button>
             </form>
-        {/* <div className="alert alert-success mt-2" style={{display: state.successMessage ? 'block' : 'none' }} role="alert">
-            {state.successMessage}
-        </div> */}
         </div>
     </div>
   );
