@@ -3,6 +3,8 @@ import  {useState} from 'react'
 import {  Form,Container,Row,Col } from "react-bootstrap"
 import NewQuestion from "./NewQuestion";
 import DoneQuestion from "./DoneQuestion";
+import {Card} from 'react-bootstrap'
+import { setAuthedUser } from "../actions/authedUser";
 
 const Dashboard=(props)=>{
   
@@ -10,9 +12,12 @@ const Dashboard=(props)=>{
 
   const handleChange=(event)=>{
 
+  
+    const { dispatch } = props;
     setUserId(event.target.value)
+    //console.log(`userID:${event.target.value}`)
 
-    //dispatch(setAuthedUser(userId));
+    dispatch(setAuthedUser(event.target.value));
   }
 
     return( 
@@ -28,9 +33,9 @@ const Dashboard=(props)=>{
 
           <Row>
             <Col>
-            <Form.Select size="lg">
-              {props.usersIds.map((id)=>(                
-                  <option key={id} value={id} onChange={handleChange} >
+            <Form.Select size="lg"  value={userId} onChange={handleChange}>
+              {props.usersIds.map((id)=>(
+                  <option key={id} value={id} >
                     {id}
                   </option>
                 ))}
@@ -39,23 +44,31 @@ const Dashboard=(props)=>{
           </Row>
 
          
-          <h3>New Questions</h3>
-            <Row>
-            {props.newQuestions.map((x) => (
-              <Col key={x.id} sm={12} md={6} lg={4} xl={4}>
-                 <NewQuestion id={x.id} author={x.author} timestamp={x.timestamp}/>                 
-              </Col>
-          ))}    
-            </Row>
+          <Card bg='warning'>
+                <Card.Header >New Questions</Card.Header>
+                    <Card.Body>
+                      <Row>
+                          {props.newQuestions.map((x) => (
+                            <Col key={x.id} sm={12} md={6} lg={4} xl={4}>
+                              <NewQuestion id={x.id} author={x.author} timestamp={x.timestamp}/>                 
+                            </Col>
+                          ))}    
+                      </Row>
+                    </Card.Body>
+            </Card>
 
-            <h3>Done Questions</h3>
-            <Row>
-            {props.doneQuestions.map((x) => (
-              <Col key={x.id} sm={12} md={6} lg={4} xl={4}>
-                 <DoneQuestion id={x.id} author={x.author} timestamp={x.timestamp}/>                 
-              </Col>
-          ))}    
-            </Row>
+            <Card bg='success'>
+                <Card.Header>Done Questions</Card.Header>
+                    <Card.Body>
+                      <Row>
+                          {props.doneQuestions.map((x) => (
+                            <Col key={x.id} sm={12} md={6} lg={4} xl={4}>
+                              <DoneQuestion id={x.id} author={x.author} timestamp={x.timestamp}/>                 
+                            </Col>
+                          ))}    
+                      </Row>
+                    </Card.Body>
+            </Card>
 
       </Container>
 
@@ -73,13 +86,18 @@ const Dashboard=(props)=>{
 const mapStateToProps=({authedUser,users,questions},{id})=>{
   const question =questions[id];
   const usersIds=Object.keys(users);
+  usersIds.unshift("")
 
-  const doneQuestions = Object.values(questions)
-     .filter((question) => question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser))
+  let doneQuestions=[]
+  let newQuestions=[]
 
-  const newQuestions = Object.values(questions)
-  .filter((question) => (!(question.optionOne.votes.includes(authedUser)) && !(question.optionTwo.votes.includes(authedUser))))
+  if (authedUser!==""){
+    doneQuestions = Object.values(questions)
+      .filter((question) => question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser))
 
+    newQuestions = Object.values(questions)
+    .filter((question) => (!(question.optionOne.votes.includes(authedUser)) && !(question.optionTwo.votes.includes(authedUser))))
+  }
 
   return{
       authedUser,
