@@ -95,8 +95,18 @@ const mapStateToProps=({authedUser,users,questions},{id})=>{
     doneQuestions = Object.values(questions)
       .filter((question) => question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser))
 
+      doneQuestions.sort((a, b) => {
+        return a.timestamp - b.timestamp;
+      });
+
+
     newQuestions = Object.values(questions)
     .filter((question) => (!(question.optionOne.votes.includes(authedUser)) && !(question.optionTwo.votes.includes(authedUser))))
+
+    newQuestions.sort((a, b) => {
+      return a.timestamp - b.timestamp;
+    });
+
   }
 
   return{

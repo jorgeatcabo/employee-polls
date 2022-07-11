@@ -140,7 +140,9 @@ export let users = {
   
   export function _getQuestions () {
     return new Promise((resolve) => {
-      setTimeout(() => resolve({...questions}), 1000)
+      setTimeout(() => resolve({...questions},
+        
+        ), 1000)
     })
   }
   

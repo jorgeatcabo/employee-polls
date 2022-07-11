@@ -36,6 +36,12 @@ export function receiveQuestions(questions) {
   };
 }
 
+export function receiveNewQuestions(questions) {
+  return {
+    type: RECEIVE_NEW_QUESTIONS,
+    questions,
+  };
+}
 
 
 function toggleQuestion({ id, authedUser, hasLiked }) {

@@ -2,6 +2,7 @@ import { useEffect, Fragment } from "react";
 import { connect } from "react-redux";
 import { handleInitialData } from "../actions/shared";
 import Dashboard from "./Dashboard";
+import AddQuestion from "./AddQuestion";
 import LoadingBar from "react-redux-loading-bar";
 
 const App = (props) => {
@@ -15,7 +16,8 @@ const App = (props) => {
   return (
       <div>
          <LoadingBar />
-        <Dashboard/>
+        {/* <Dashboard/> */}
+        <AddQuestion/>
       </div>
   );
 };
