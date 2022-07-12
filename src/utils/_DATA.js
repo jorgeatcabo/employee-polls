@@ -207,7 +207,7 @@ export let users = {
             }
           }
         }
-        resolve(true)
+        resolve(questions)
       }, 500)
     })
   }

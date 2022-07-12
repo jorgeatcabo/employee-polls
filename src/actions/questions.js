@@ -60,7 +60,9 @@ export function handleQuestionAnswer(info) {
       qid,
       answer,
     })
-      .then((question) => dispatch(addQuestionAnswer(question)))
+      .then((question) =>{
+        console.log(question)
+        dispatch(addQuestionAnswer(question))} )
       .then(() => dispatch(hideLoading()));
   };
 }
