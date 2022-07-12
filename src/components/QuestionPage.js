@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { handleQuestionAnswer } from "../actions/questions";
 import {Card, Button,Container,Row,Col} from 'react-bootstrap'
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
@@ -14,10 +15,37 @@ const withRouter = (Component) => {
 };
 
 const QuestionPage = (props) => {
+  
+  const handleChooseOptionOne = (e) => {
+    e.preventDefault();
+    const { dispatch, id, authedUser } = props;
+
+    dispatch(
+      handleQuestionAnswer({
+        authedUser,
+        qid: id,
+        answer:"optionOne",
+      })
+    );
+  };
+
+  const handleChooseOptionTwo = (e) => {
+    e.preventDefault();
+    const { dispatch, id, authedUser } = props;
+
+    dispatch(
+      handleQuestionAnswer({
+        authedUser,
+        qid: id,
+        answer:"optionTwo",
+      })
+    );
+  };
 
   return (
     <div>
       <Container className='text-center'>
+        <h1>Poll by {props.author}</h1>
       <Card bg='info'>
           <Card.Header >Would You Rather</Card.Header>
               <Card.Body>
@@ -26,20 +54,20 @@ const QuestionPage = (props) => {
 
                     <Col>
                       <Card>
-                        <Card.Header>{props.questions.optionOne.text}</Card.Header>
+                        <Card.Header>{props.optionOne}</Card.Header>
                           <Card.Body>
                               <Card.Title></Card.Title>
-                              <Button variant="primary" >Choose</Button>
+                              <Button variant="primary"  onClick={handleChooseOptionOne} >Choose</Button>
                           </Card.Body>
                       </Card>
                     </Col>
 
                     <Col>
                       <Card>
-                        <Card.Header>{props.questions.optionTwo.text}</Card.Header>
+                        <Card.Header>{props.optionTwo}</Card.Header>
                           <Card.Body>
                             <Card.Title></Card.Title>
-                            <Button variant="primary" >Choose</Button>
+                            <Button variant="primary" onClick={handleChooseOptionTwo} >Choose</Button>
                         </Card.Body>
                       </Card>
                     </Col>
@@ -66,11 +94,16 @@ const QuestionPage = (props) => {
 
  const mapStateToProps = ({ authedUser, questions, users }, props) => {
    const id = props.router.params.id;
+   const author=questions[id].author
+   const optionOne=questions[id].optionOne.text
+   const optionTwo=questions[id].optionTwo.text
+   
     return {
       id,
-      questions: !questions[id]
-      ? []
-      : questions[id],
+      author,
+      optionOne,
+      optionTwo,
+      authedUser
     };
  };
 

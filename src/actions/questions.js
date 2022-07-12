@@ -1,4 +1,4 @@
-import {  saveQuestion } from "../utils/api";
+import {  saveQuestion,saveQuestionAnswer } from "../utils/api";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
 
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
@@ -38,23 +38,30 @@ export function receiveQuestions(questions) {
 
 
 
-function toggleQuestion({ id, authedUser, hasLiked }) {
+function addQuestionAnswer({ authedUser,qid, answer }) {
   return {
     type: TOGGLE_QUESTION,
-    id,
     authedUser,
-    hasLiked,
+    qid,
+    answer,
   };
 }
 
-export function handleToggleQuestion(info) {
+export function handleQuestionAnswer(info) {
   return (dispatch) => {
-    dispatch(toggleQuestion(info));
 
-    // return saveLikeToggle(info).catch((e) => {
-    //   console.warn("Error in handleToggleQuestion: ", e);
-    //   dispatch(toggleQuestion(info));
-    //   alert("The was an error liking the question. Try again.");
-    // });
+    dispatch(showLoading());
+
+    const authedUser=info.authedUser
+    const qid=info.qid
+    const answer=info.answer
+
+    return saveQuestionAnswer({      
+      authedUser,
+      qid,
+      answer,
+    })
+      .then((question) => dispatch(addQuestionAnswer(question)))
+      .then(() => dispatch(hideLoading()));
   };
 }

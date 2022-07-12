@@ -185,7 +185,6 @@ export let users = {
       if (!authedUser || !qid || !answer) {
         reject("Please provide authedUser, qid, and answer");
       }
-  
       setTimeout(() => {
         users = {
           ...users,
@@ -208,7 +207,6 @@ export let users = {
             }
           }
         }
-  
         resolve(true)
       }, 500)
     })
