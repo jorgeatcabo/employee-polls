@@ -23,7 +23,7 @@ const Header = (props) => {
               <LinkContainer to="">
                 <Nav.Link>Leaderboard</Nav.Link>
               </LinkContainer>
-              <LinkContainer to="/new">
+              <LinkContainer to="/add">
                 <Nav.Link>New Poll</Nav.Link>
               </LinkContainer>      
               <Nav.Link>User: {props.authedUser}</Nav.Link>

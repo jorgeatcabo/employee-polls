@@ -25,8 +25,8 @@ const App = (props) => {
         {/* {props.loading === true ? null : ( */}
           <Routes>
             <Route path="/" exact element={<Dashboard />} />
-            <Route path="/question/:id" element={<QuestionPage />} />
-            <Route path="/new" element={<AddQuestion />} />
+            <Route path="/questions/:id" element={<QuestionPage />} />
+            <Route path="/add" element={<AddQuestion />} />
           </Routes>
         {/* )} */}
       </div>

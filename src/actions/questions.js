@@ -5,6 +5,7 @@ export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 export const RECEIVE_NEW_QUESTIONS = "RECEIVE_NEW_QUESTIONS";
 export const TOGGLE_QUESTION = "TOGGLE_QUESTION";
 export const ADD_QUESTION = "ADD_QUESTION";
+export const ADD_QUESTION_ANSWER = "ADD_QUESTION_ANSWER";
 
 function addQuestion(question) {
   return {
@@ -38,12 +39,10 @@ export function receiveQuestions(questions) {
 
 
 
-function addQuestionAnswer({ authedUser,qid, answer }) {
+function addQuestionAnswer(question) {
   return {
-    type: TOGGLE_QUESTION,
-    authedUser,
-    qid,
-    answer,
+    type: ADD_QUESTION_ANSWER,
+    question,
   };
 }
 
