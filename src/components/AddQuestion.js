@@ -38,7 +38,7 @@ const AddQuestion = ({ dispatch, id }) => {
         <div className="card col-12 col-lg-4 login-card mt-2 hv-center">
         <h2>Would You Rather</h2>
         <h6>Create Your Own Poll</h6>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="form-group text-left">
                 <label htmlFor="first-option">First Option</label>
                 <input type="text" 
@@ -47,6 +47,7 @@ const AddQuestion = ({ dispatch, id }) => {
                     placeholder="Enter First Option" 
                     value={firstOption}
                     onChange={handleFirstOption}
+                    required
                 />
                 </div>
                 <div className="form-group text-left">
@@ -57,6 +58,7 @@ const AddQuestion = ({ dispatch, id }) => {
                     placeholder="Enter Second Option"
                     value={secondOption}
                     onChange={handleSecondOption} 
+                    required
                 />
                 </div>
                 <div className="form-check">
@@ -64,7 +66,6 @@ const AddQuestion = ({ dispatch, id }) => {
                 <button 
                     type="submit" 
                     className="btn btn-primary"
-                    onClick={handleSubmit}
                 >Submit</button>
             </form>
         </div>

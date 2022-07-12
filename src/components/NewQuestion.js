@@ -1,37 +1,49 @@
 import {connect} from 'react-redux'
 import {Card, Button} from 'react-bootstrap'
 import { formatDate } from "../utils/helpers";
+import { useNavigate,Link } from "react-router-dom";
 
 const NewQuestion=(props)=>{
 
+    const navigate = useNavigate();
+
+    const toParent = (e, id) => {
+        e.preventDefault();
+    
+        navigate(`/question/${id}`);
+      };
+    
+
+      const {
+        id,
+      } = props.question;
+    
+
     return(
         <div>
-
-            <Card>
-                <Card.Header>{props.author}</Card.Header>
-                    <Card.Body>
-                        <Card.Title>{formatDate(props.timestamp)}</Card.Title>
-                        <Button variant="primary">Show</Button>
-                    </Card.Body>
-            </Card>
-            
+            <Link to={`/question/${id}`}>
+                <Card>
+                    <Card.Header>{props.author}</Card.Header>
+                        <Card.Body>
+                            <Card.Title>{formatDate(props.timestamp)}</Card.Title>
+                            <Button variant="primary" onClick={(e) => toParent(e, id)}>Show</Button>
+                        </Card.Body>
+                </Card>
+            </Link>
         </div>
     )
 
 }
 
-// const mapStateToProps=({authedUser,users,questions},{id})=>{
-//     const question =questions[id];
+const mapStateToProps=({authedUser,users,questions},{id})=>{
+    const question =questions[id];
 
-//     const newQuestions = Object.values(questions)
-//        .filter((question) => (!(question.optionOne.votes.includes(authedUser)) && !(question.optionTwo.votes.includes(authedUser))))
        
 
-//     return{
-//         authedUser,
-//         question,
-//         newQuestions
-//     }
-// }
+    return{
+        authedUser,
+        question,
+    }
+ }
 
-export default NewQuestion;
+export default connect(mapStateToProps)(NewQuestion);

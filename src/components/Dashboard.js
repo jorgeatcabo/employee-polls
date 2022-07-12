@@ -86,17 +86,18 @@ const Dashboard=(props)=>{
 const mapStateToProps=({authedUser,users,questions},{id})=>{
   const question =questions[id];
   const usersIds=Object.keys(users);
+  usersIds.unshift("LOGOUT")
   usersIds.unshift("")
 
   let doneQuestions=[]
   let newQuestions=[]
 
-  if (authedUser!==""){
+  if ((authedUser!=="LOGOUT") && (authedUser!=="")){
     doneQuestions = Object.values(questions)
       .filter((question) => question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser))
 
       doneQuestions.sort((a, b) => {
-        return a.timestamp - b.timestamp;
+        return b.timestamp - a.timestamp;
       });
 
 
@@ -104,7 +105,7 @@ const mapStateToProps=({authedUser,users,questions},{id})=>{
     .filter((question) => (!(question.optionOne.votes.includes(authedUser)) && !(question.optionTwo.votes.includes(authedUser))))
 
     newQuestions.sort((a, b) => {
-      return a.timestamp - b.timestamp;
+      return b.timestamp - a.timestamp;
     });
 
   }

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { handleInitialData } from "../actions/shared";
 import Dashboard from "./Dashboard";
 import AddQuestion from "./AddQuestion";
+import QuestionPage from "./QuestionPage";
 import LoadingBar from "react-redux-loading-bar";
 import Header from "./Header";
 import { Routes, Route } from "react-router-dom";
@@ -24,7 +25,7 @@ const App = (props) => {
         {/* {props.loading === true ? null : ( */}
           <Routes>
             <Route path="/" exact element={<Dashboard />} />
-            {/* <Route path="/tweet/:id" element={<TweetPage />} /> */}
+            <Route path="/question/:id" element={<QuestionPage />} />
             <Route path="/new" element={<AddQuestion />} />
           </Routes>
         {/* )} */}
