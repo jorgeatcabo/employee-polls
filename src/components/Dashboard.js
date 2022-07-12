@@ -15,7 +15,6 @@ const Dashboard=(props)=>{
   
     const { dispatch } = props;
     setUserId(event.target.value)
-    //console.log(`userID:${event.target.value}`)
 
     dispatch(setAuthedUser(event.target.value));
   }

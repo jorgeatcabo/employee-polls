@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
-// import Tweet from "./Tweet";
-// import NewTweet from "./NewTweet";
+import {Card, Button,Container,Row,Col} from 'react-bootstrap'
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const withRouter = (Component) => {
@@ -15,9 +14,42 @@ const withRouter = (Component) => {
 };
 
 const QuestionPage = (props) => {
+
   return (
     <div>
-      Question Page
+      <Container className='text-center'>
+      <Card bg='info'>
+          <Card.Header >Would You Rather</Card.Header>
+              <Card.Body>
+
+                  <Row>
+
+                    <Col>
+                      <Card>
+                        <Card.Header>{props.questions.optionOne.text}</Card.Header>
+                          <Card.Body>
+                              <Card.Title></Card.Title>
+                              <Button variant="primary" >Choose</Button>
+                          </Card.Body>
+                      </Card>
+                    </Col>
+
+                    <Col>
+                      <Card>
+                        <Card.Header>{props.questions.optionTwo.text}</Card.Header>
+                          <Card.Body>
+                            <Card.Title></Card.Title>
+                            <Button variant="primary" >Choose</Button>
+                        </Card.Body>
+                      </Card>
+                    </Col>
+
+                  </Row>
+
+              </Card.Body>
+            </Card>
+      </Container>
+
       {/* <Tweet id={props.id} />
       <NewTweet id={props.id} />
       {props.replies.length !== 0 && <h3 className="center">Replies</h3>}
@@ -32,18 +64,14 @@ const QuestionPage = (props) => {
   );
 };
 
-// const mapStateToProps = ({ authedUser, tweets, users }, props) => {
-//   const { id } = props.router.params;
+ const mapStateToProps = ({ authedUser, questions, users }, props) => {
+   const id = props.router.params.id;
+    return {
+      id,
+      questions: !questions[id]
+      ? []
+      : questions[id],
+    };
+ };
 
-//   return {
-//     id,
-//     replies: !tweets[id]
-//       ? []
-//       : tweets[id].replies.sort(
-//           (a, b) => tweets[b].timestamp - tweets[a].timestamp
-//         ),
-//   };
-// };
-
-//export default withRouter(connect(mapStateToProps)(QuestionPage));
-export default QuestionPage;
+export default withRouter(connect(mapStateToProps)(QuestionPage));
