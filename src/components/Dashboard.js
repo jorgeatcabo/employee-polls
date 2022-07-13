@@ -76,12 +76,6 @@ const Dashboard=(props)=>{
     )
 }
 
-// const mapStateToProps=({users,questions})=>({
-//     usersIds:Object.keys(users),
-//     questionsIds:Object.keys(questions),
-// }
-// )
-
 const mapStateToProps=({authedUser,users,questions},{id})=>{
   const question =questions[id];
   

@@ -55,13 +55,13 @@ const AnswerPage = (props) => {
       <Card bg='info'>
       <Card.Img variant='top' src={props.avatarURL} width="130" height="130" alt={props.author} />
 
-          <Card.Header >Poll's Answers</Card.Header>
+          <Card.Header >Poll's Votes</Card.Header>
               <Card.Body>
 
                   <Row>
 
                     <Col>
-                      <Card>
+                    <Card  bg={props.optionOneBg}>
                         <Card.Header>{props.optionOne}</Card.Header>
                           <Card.Body>
                               <Card.Title>{props.optionOneAnswered}/{props.numberOfUsers}</Card.Title>                              
@@ -71,7 +71,7 @@ const AnswerPage = (props) => {
                     </Col>
 
                     <Col>
-                      <Card>
+                      <Card bg={props.optionTwoBg}>
                         <Card.Header>{props.optionTwo}</Card.Header>
                           <Card.Body>
                             <Card.Title>{props.optionTwoAnswered}/{props.numberOfUsers}</Card.Title>                            
@@ -98,8 +98,26 @@ const AnswerPage = (props) => {
    const optionOneAnswered=questions[id].optionOne.votes.length
    const optionTwoAnswered=questions[id].optionTwo.votes.length
    const numberOfUsers=Object.keys(users).length;
+   const optionOneSelected=questions[id].optionOne.votes.includes(authedUser)
+   const optionTwoSelected=questions[id].optionTwo.votes.includes(authedUser)
 
+   console.log(optionOneSelected)
+   console.log(optionTwoSelected)
    
+
+  let optionOneBg=""
+  let optionTwoBg=""
+
+   if (optionOneSelected){
+    optionOneBg="success"
+   }
+   
+   if (optionTwoSelected){
+    optionTwoBg="success"
+   }
+
+   console.log(optionOneBg)
+   console.log(optionTwoBg)
     return {
       id,
       author,
@@ -109,7 +127,9 @@ const AnswerPage = (props) => {
       authedUser,
       optionOneAnswered,
       optionTwoAnswered,
-      numberOfUsers
+      numberOfUsers,
+      optionOneBg,
+      optionTwoBg,
     };
  };
 
