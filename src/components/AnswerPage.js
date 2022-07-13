@@ -64,7 +64,8 @@ const AnswerPage = (props) => {
                       <Card>
                         <Card.Header>{props.optionOne}</Card.Header>
                           <Card.Body>
-                              <Card.Title></Card.Title>                              
+                              <Card.Title>{props.optionOneAnswered}/{props.numberOfUsers}</Card.Title>                              
+                              Pecent Voted: {props.optionOneAnswered/props.numberOfUsers} %
                           </Card.Body>
                       </Card>
                     </Col>
@@ -73,7 +74,8 @@ const AnswerPage = (props) => {
                       <Card>
                         <Card.Header>{props.optionTwo}</Card.Header>
                           <Card.Body>
-                            <Card.Title></Card.Title>                            
+                            <Card.Title>{props.optionTwoAnswered}/{props.numberOfUsers}</Card.Title>                            
+                            Pecent Voted: {props.optionTwoAnswered/props.numberOfUsers} %
                         </Card.Body>
                       </Card>
                     </Col>
@@ -93,6 +95,10 @@ const AnswerPage = (props) => {
    const avatarURL=users[author].avatarURL
    const optionOne=questions[id].optionOne.text
    const optionTwo=questions[id].optionTwo.text
+   const optionOneAnswered=questions[id].optionOne.votes.length
+   const optionTwoAnswered=questions[id].optionTwo.votes.length
+   const numberOfUsers=Object.keys(users).length;
+
    
     return {
       id,
@@ -100,7 +106,10 @@ const AnswerPage = (props) => {
       avatarURL,
       optionOne,
       optionTwo,
-      authedUser
+      authedUser,
+      optionOneAnswered,
+      optionTwoAnswered,
+      numberOfUsers
     };
  };
 

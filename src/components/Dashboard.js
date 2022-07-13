@@ -84,10 +84,7 @@ const Dashboard=(props)=>{
 
 const mapStateToProps=({authedUser,users,questions},{id})=>{
   const question =questions[id];
-  const usersIds=Object.keys(users);
-  usersIds.unshift("LOGOUT")
-  usersIds.unshift("")
-
+  
   let doneQuestions=[]
   let newQuestions=[]
 
@@ -112,7 +109,6 @@ const mapStateToProps=({authedUser,users,questions},{id})=>{
   return{
       authedUser,
       question,
-      usersIds,
       newQuestions,
       doneQuestions,
   }
