@@ -7,6 +7,8 @@ import QuestionPage from "./QuestionPage";
 import LoadingBar from "react-redux-loading-bar";
 import Header from "./Header";
 import { Routes, Route } from "react-router-dom";
+import Login from "./Login";
+import AskLogin from "./AskLogin";
 
 
 const App = (props) => {
@@ -22,21 +24,32 @@ const App = (props) => {
       <LoadingBar />
       <div className="container">
         <Header />
-        {/* {props.loading === true ? null : ( */}
+        <Login/>
           <Routes>
-            <Route path="/" exact element={<Dashboard />} />
-            <Route path="/questions/:id" element={<QuestionPage />} />
-            <Route path="/add" element={<AddQuestion />} />
-          </Routes>
-        {/* )} */}
+            
+            <Route path="/" exact element={(props.authedUser !=="LOGOUT" && props.authedUser !=="") ? (<Dashboard />):<AskLogin/>} />
+            
+            <Route path="/questions/:id" element={(props.authedUser !=="LOGOUT" && props.authedUser !=="") ? (<QuestionPage/>):<AskLogin/>} />
+            
+            <Route path="/add" element={(props.authedUser !=="LOGOUT" && props.authedUser !=="") ? (<AddQuestion />):<AskLogin/>} />
+            
+          </Routes>          
       </div>
     </Fragment>
   );
 };
 
-const mapStateToProps = ({ authedUser }) => ({
-  loading: authedUser === null,
-});
+const mapStateToProps = ({ authedUser }) => {
+
+
+  console.log(authedUser)
+  
+  return{
+    loading: authedUser === null,
+    authedUser
+  }
+  
+};
 
 
 export default connect(mapStateToProps)(App);

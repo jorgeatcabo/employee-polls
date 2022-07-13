@@ -8,7 +8,6 @@ import {LinkContainer} from 'react-router-bootstrap'
 
 const Header = (props) => {
  
-  console.log(props)
   return (
     <header>
       <Navbar bg="light" variant="light">
@@ -27,6 +26,15 @@ const Header = (props) => {
                 <Nav.Link>New Poll</Nav.Link>
               </LinkContainer>      
               <Nav.Link>User: {props.authedUser}</Nav.Link>
+              <Nav.Link>
+                {props.avatarURL && (<img
+                    src={props.avatarURL} 
+                    width="30" 
+                    height="30" 
+                    alt={props.author}
+                     />)}
+
+              </Nav.Link>
             </Nav>
           </Container>
       </Navbar>
@@ -37,8 +45,12 @@ const Header = (props) => {
   
 };
 const mapStateToProps = ({ authedUser, users }) => {
-
-  const avatarURL=users[authedUser].avatarURL
+  
+  let avatarURL=""
+  
+  if ((authedUser!=="LOGOUT") && (authedUser!=="") && (authedUser!==null)){
+    avatarURL=users[authedUser].avatarURL
+  }
   return{
     authedUser,
     avatarURL,

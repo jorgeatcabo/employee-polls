@@ -1,63 +1,62 @@
 import React, {useState} from 'react'
+import {connect} from "react-redux";
+import {  Form, Container,Row,Col } from "react-bootstrap"
+import { setAuthedUser } from "../actions/authedUser";
 
 
+const Login = (props) => {
 
-const Login = () => {
+  const [userId, setUserId]=useState("")
 
-    const [user, setUser]=useState("")
-    const [password, setPassword]=useState("")
+  const handleChange=(event)=>{
 
-    const handleUser = (e) => {        
-        setUser( e.target.value);
-      };
+  
+    const { dispatch } = props;
+    setUserId(event.target.value)
 
-      const handlePassword = (e) => {        
-        setPassword( e.target.value);
-      };
-
-
-      const handleSubmitClick=(e)=>{
-        e.preventDefault();
-      }
+    dispatch(setAuthedUser(event.target.value));
+  }
 
   return (
-    <div className='d-flex justify-content-center'>
-        <div className="card col-12 col-lg-4 login-card mt-2 hv-center">
-            <form>
-                <div className="form-group text-left">
-                <label htmlFor="user">User</label>
-                <input type="text" 
-                    className="form-control" 
-                    id="user"             
-                    placeholder="Enter User Name" 
-                    value={user}
-                    onChange={handleUser}
-                />
-                </div>
-                <div className="form-group text-left">
-                <label htmlFor="password">Password</label>
-                <input type="password" 
-                    className="form-control" 
-                    id="password" 
-                    placeholder="Password"
-                    value={password}
-                    onChange={handlePassword} 
-                />
-                </div>
-                <div className="form-check">
-                </div>
-                <button 
-                    type="submit" 
-                    className="btn btn-primary"
-                    onClick={handleSubmitClick}
-                >Submit</button>
-            </form>
-        {/* <div className="alert alert-success mt-2" style={{display: state.successMessage ? 'block' : 'none' }} role="alert">
-            {state.successMessage}
-        </div> */}
-        </div>
-    </div>
+
+    <Container className='text-center'>
+
+      <Row>
+        <Col>
+            <h4>Select an User or LOGOUT</h4>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col>
+
+          <Form.Select size="lg"  value={userId} onChange={handleChange}>
+                {props.usersIds.map((id)=>(
+                    <option key={id} value={id} >
+                      {id}
+                    </option>
+                  ))}
+          </Form.Select>
+              
+          </Col>
+        </Row>
+
+      </Container>
+      
   )
 }
 
-export default Login;
+const mapStateToProps=({authedUser,users,questions})=>{
+  const usersIds=Object.keys(users);
+  usersIds.unshift("LOGOUT")
+  usersIds.unshift("")
+
+
+  return{
+      authedUser,
+      usersIds,
+  }
+}
+
+
+export default connect(mapStateToProps)(Login);

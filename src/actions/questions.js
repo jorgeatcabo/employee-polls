@@ -61,7 +61,6 @@ export function handleQuestionAnswer(info) {
       answer,
     })
       .then((question) =>{
-        console.log(question)
         dispatch(addQuestionAnswer(question))} )
       .then(() => dispatch(hideLoading()));
   };

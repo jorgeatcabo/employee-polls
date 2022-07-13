@@ -24,7 +24,7 @@ const Dashboard=(props)=>{
         
         <Container className='text-center'>
 
-          <Row>
+          {/* <Row>
             <Col>
                 <h4>Select an User or LOGOUT</h4>
             </Col>
@@ -40,7 +40,7 @@ const Dashboard=(props)=>{
                 ))}
             </Form.Select>
             </Col>
-          </Row>
+          </Row> */}
 
          
           <Card bg='warning'>
