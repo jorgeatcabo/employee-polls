@@ -26,7 +26,7 @@ const Dashboard=(props)=>{
 
           <Row>
             <Col>
-                <h4>Select an User</h4>
+                <h4>Select an User or LOGOUT</h4>
             </Col>
           </Row>
 
@@ -44,7 +44,7 @@ const Dashboard=(props)=>{
 
          
           <Card bg='warning'>
-                <Card.Header >New Questions</Card.Header>
+                <Card.Header >Unanswered Questions</Card.Header>
                     <Card.Body>
                       <Row>
                           {props.newQuestions.map((x) => (
@@ -57,7 +57,7 @@ const Dashboard=(props)=>{
             </Card>
 
             <Card bg='success'>
-                <Card.Header>Done Questions</Card.Header>
+                <Card.Header>Answered Questions</Card.Header>
                     <Card.Body>
                       <Row>
                           {props.doneQuestions.map((x) => (

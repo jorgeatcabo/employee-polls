@@ -16,6 +16,8 @@ const withRouter = (Component) => {
 
 const QuestionPage = (props) => {
   
+  const navigate = useNavigate();
+
   const handleChooseOptionOne = (e) => {
     e.preventDefault();
     const { dispatch, id, authedUser } = props;
@@ -27,6 +29,8 @@ const QuestionPage = (props) => {
         answer:"optionOne",
       })
     );
+
+    navigate(`/`);
   };
 
   const handleChooseOptionTwo = (e) => {
@@ -40,6 +44,8 @@ const QuestionPage = (props) => {
         answer:"optionTwo",
       })
     );
+
+    navigate(`/`);
   };
 
   return (
@@ -47,6 +53,8 @@ const QuestionPage = (props) => {
       <Container className='text-center'>
         <h1>Poll by {props.author}</h1>
       <Card bg='info'>
+      <Card.Img variant='top' src={props.avatarURL} width="130" height="130" alt={props.author} />
+
           <Card.Header >Would You Rather</Card.Header>
               <Card.Body>
 
@@ -77,17 +85,6 @@ const QuestionPage = (props) => {
               </Card.Body>
             </Card>
       </Container>
-
-      {/* <Tweet id={props.id} />
-      <NewTweet id={props.id} />
-      {props.replies.length !== 0 && <h3 className="center">Replies</h3>}
-      <ul>
-        {props.replies.map((replyId) => (
-          <li key={replyId}>
-            <Tweet id={replyId} />
-          </li>
-        ))}
-      </ul> */}
     </div>
   );
 };
@@ -95,12 +92,14 @@ const QuestionPage = (props) => {
  const mapStateToProps = ({ authedUser, questions, users }, props) => {
    const id = props.router.params.id;
    const author=questions[id].author
+   const avatarURL=users[author].avatarURL
    const optionOne=questions[id].optionOne.text
    const optionTwo=questions[id].optionTwo.text
    
     return {
       id,
       author,
+      avatarURL,
       optionOne,
       optionTwo,
       authedUser

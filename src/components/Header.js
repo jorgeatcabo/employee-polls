@@ -36,9 +36,12 @@ const Header = (props) => {
 
   
 };
-const mapStateToProps = ({ authedUser }) => {
+const mapStateToProps = ({ authedUser, users }) => {
+
+  const avatarURL=users[authedUser].avatarURL
   return{
     authedUser,
+    avatarURL,
 }
 }
 
