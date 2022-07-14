@@ -46,7 +46,7 @@ const Login = (props) => {
   )
 }
 
-const mapStateToProps=({authedUser,users,questions})=>{
+const mapStateToProps=({authedUser,users})=>{
   const usersIds=Object.keys(users);
   usersIds.unshift("LOGOUT")
   usersIds.unshift("")

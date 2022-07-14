@@ -1,4 +1,6 @@
 import {  saveQuestion,saveQuestionAnswer } from "../utils/api";
+import { _getUsers } from "../utils/_DATA";
+import { receiveUsers } from "./users";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
 
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
@@ -61,7 +63,11 @@ export function handleQuestionAnswer(info) {
       answer,
     })
       .then((question) =>{
-        dispatch(addQuestionAnswer(question))} )
-      .then(() => dispatch(hideLoading()));
+        dispatch(addQuestionAnswer(question))})
+      .then(() => _getUsers()).then((users) => {
+        dispatch(receiveUsers(users)
+      )
+      console.log(users)
+    }).then(() => dispatch(hideLoading()));;
   };
 }

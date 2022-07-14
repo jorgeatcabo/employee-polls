@@ -35,7 +35,7 @@ const DoneQuestion=(props)=>{
 
 }
 
-const mapStateToProps=({authedUser,users,questions},{id})=>{
+const mapStateToProps=({authedUser,questions},{id})=>{
     const question =questions[id];
 
        

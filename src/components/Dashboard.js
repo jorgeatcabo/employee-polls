@@ -24,25 +24,6 @@ const Dashboard=(props)=>{
         
         <Container className='text-center'>
 
-          {/* <Row>
-            <Col>
-                <h4>Select an User or LOGOUT</h4>
-            </Col>
-          </Row>
-
-          <Row>
-            <Col>
-            <Form.Select size="lg"  value={userId} onChange={handleChange}>
-              {props.usersIds.map((id)=>(
-                  <option key={id} value={id} >
-                    {id}
-                  </option>
-                ))}
-            </Form.Select>
-            </Col>
-          </Row> */}
-
-         
           <Card bg='warning'>
                 <Card.Header >Unanswered Questions</Card.Header>
                     <Card.Body>
@@ -76,7 +57,7 @@ const Dashboard=(props)=>{
     )
 }
 
-const mapStateToProps=({authedUser,users,questions},{id})=>{
+const mapStateToProps=({authedUser,questions},{id})=>{
   const question =questions[id];
   
   let doneQuestions=[]

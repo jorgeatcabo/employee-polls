@@ -53,10 +53,8 @@ const LeaderBoard = (props) => {
   );
 };
 
- const mapStateToProps = ({ authedUser, questions, users }) => {
-  const usersIds=Object.keys(users);
+ const mapStateToProps = ({  users }) => {
   const usersData=Object.values(users)
-   
   const usersDataTotals=usersData.map((data)=>{
     const Obj = {};
 
