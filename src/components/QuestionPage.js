@@ -52,7 +52,7 @@ const QuestionPage = (props) => {
     <div>
       <Container className='text-center'>
         <h1>Poll by {props.author}</h1>
-      <Card bg='info'>
+      <Card>
       <Card.Img variant='top' src={props.avatarURL} width="130" height="130" alt={props.author} />
 
           <Card.Header >Would You Rather</Card.Header>

@@ -1,68 +1,46 @@
 import { connect } from "react-redux";
-import { handleQuestionAnswer } from "../actions/questions";
-import {Card, Button,Container,Row,Col} from 'react-bootstrap'
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-
-const withRouter = (Component) => {
-  const ComponentWithRouterProp = (props) => {
-    let location = useLocation();
-    let navigate = useNavigate();
-    let params = useParams();
-    return <Component {...props} router={{ location, navigate, params }} />;
-  };
-
-  return ComponentWithRouterProp;
-};
+import {Card, Table,Container,Row,Col} from 'react-bootstrap'
 
 const LeaderBoard = (props) => {
-  
-  const navigate = useNavigate();
-
-  const handleChooseOptionOne = (e) => {
-    e.preventDefault();
-    const { dispatch, id, authedUser } = props;
-
-    dispatch(
-      handleQuestionAnswer({
-        authedUser,
-        qid: id,
-        answer:"optionOne",
-      })
-    );
-
-    navigate(`/`);
-  };
-
-  const handleChooseOptionTwo = (e) => {
-    e.preventDefault();
-    const { dispatch, id, authedUser } = props;
-
-    dispatch(
-      handleQuestionAnswer({
-        authedUser,
-        qid: id,
-        answer:"optionTwo",
-      })
-    );
-
-    navigate(`/`);
-  };
 
   return (
     <div>
       <Container className='text-center'>
-      <Card bg='info'>
-      <Card.Img variant='top' src={props.avatarURL} width="130" height="130" alt={props.author} />
-
+      <Card >
           <Card.Header >Leader Board</Card.Header>
               <Card.Body>
 
                   <Row>
 
                     <Col>
-
+                      <Table striped bordered hover>
+                        <thead>
+                          <tr>
+                            <th>Users</th>
+                            <th>Answered</th>
+                            <th>Created</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                              {props.usersData.map((data, key) => {
+                                return (
+                                  <tr key={key}>
+                                    <td>
+                                    <img
+                                      src={data.avatarURL} 
+                                      width="30" 
+                                      height="30" 
+                                      alt={data.name}
+                                      />
+                                      <h5>{data.name}</h5>
+                                      <h6>{data.id}</h6>
+                                    </td>
+                                  </tr>
+                                )
+                              })}
+                        </tbody>
+                      </Table>
                     </Col>
-
 
                   </Row>
 
@@ -74,7 +52,7 @@ const LeaderBoard = (props) => {
 };
 
  const mapStateToProps = ({ authedUser, questions, users }) => {
-  // const usersIds=Object.keys(users);
+   const usersData=Object.values(users)
   //  const author=users[usersIds].author
   //  const avatarURL=users[author].avatarURL
   //  const optionOne=questions[id].optionOne.text
@@ -103,6 +81,7 @@ const LeaderBoard = (props) => {
   //  console.log(optionOneBg)
   //  console.log(optionTwoBg)
     return {
+      usersData,
       // id,
       // author,
       // avatarURL,
@@ -117,4 +96,4 @@ const LeaderBoard = (props) => {
     };
  };
 
-export default withRouter(connect(mapStateToProps)(LeaderBoard));
+export default connect(mapStateToProps)(LeaderBoard);

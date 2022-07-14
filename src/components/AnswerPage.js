@@ -52,7 +52,7 @@ const AnswerPage = (props) => {
     <div>
       <Container className='text-center'>
         <h1>Poll by {props.author}</h1>
-      <Card bg='info'>
+      <Card >
       <Card.Img variant='top' src={props.avatarURL} width="130" height="130" alt={props.author} />
 
           <Card.Header >Poll's Votes</Card.Header>
@@ -90,24 +90,28 @@ const AnswerPage = (props) => {
 };
 
  const mapStateToProps = ({ authedUser, questions, users }, props) => {
-   const id = props.router.params.id;
-   const author=questions[id].author
-   const avatarURL=users[author].avatarURL
-   const optionOne=questions[id].optionOne.text
-   const optionTwo=questions[id].optionTwo.text
-   const optionOneAnswered=questions[id].optionOne.votes.length
-   const optionTwoAnswered=questions[id].optionTwo.votes.length
-   const numberOfUsers=Object.keys(users).length;
-   const optionOneSelected=questions[id].optionOne.votes.includes(authedUser)
-   const optionTwoSelected=questions[id].optionTwo.votes.includes(authedUser)
-
-   console.log(optionOneSelected)
-   console.log(optionTwoSelected)
-   
-
+  const id = props.router.params.id;
   let optionOneBg=""
   let optionTwoBg=""
+  let author=""
+  let avatarURL=""
+  let optionOne=""
+  let optionTwo=""
+  let optionOneAnswered=""
+  let optionTwoAnswered=""
+  let numberOfUsers=0
 
+  if (Object.entries(questions).length !== 0){
+   author=questions[id].author
+   avatarURL=users[author].avatarURL
+   optionOne=questions[id].optionOne.text
+   optionTwo=questions[id].optionTwo.text
+   optionOneAnswered=questions[id].optionOne.votes.length
+   optionTwoAnswered=questions[id].optionTwo.votes.length
+   numberOfUsers=Object.keys(users).length;
+   const optionOneSelected=questions[id].optionOne.votes.includes(authedUser)
+   const optionTwoSelected=questions[id].optionTwo.votes.includes(authedUser)
+  
    if (optionOneSelected){
     optionOneBg="success"
    }
@@ -115,9 +119,7 @@ const AnswerPage = (props) => {
    if (optionTwoSelected){
     optionTwoBg="success"
    }
-
-   console.log(optionOneBg)
-   console.log(optionTwoBg)
+  }
     return {
       id,
       author,

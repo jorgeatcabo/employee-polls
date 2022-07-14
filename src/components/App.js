@@ -34,7 +34,7 @@ const App = (props) => {
             
             <Route path="/questions/:id" element={(props.authedUser !=="LOGOUT" && props.authedUser !=="") ? (<QuestionPage/>):<FourOFour/>} />
            
-            <Route path="/answers/:id" element={(props.authedUser !=="LOGOUT" && props.authedUser !=="") ? (<AnswerPage/>):<AskLogin/>} />
+            <Route path="/answers/:id" element={(props.authedUser !=="LOGOUT" && props.authedUser !=="") ? (<AnswerPage/>):<FourOFour/>} />
             
             <Route path="/add" element={(props.authedUser !=="LOGOUT" && props.authedUser !=="") ? (<AddQuestion />):<AskLogin/>} />
             
