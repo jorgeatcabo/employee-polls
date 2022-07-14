@@ -22,7 +22,7 @@ const LeaderBoard = (props) => {
                           </tr>
                         </thead>
                         <tbody>
-                              {props.usersData.map((data, key) => {
+                              {props.usersDataTotals.map((data, key) => {
                                 return (
                                   <tr key={key}>
                                     <td>
@@ -35,6 +35,8 @@ const LeaderBoard = (props) => {
                                       <h5>{data.name}</h5>
                                       <h6>{data.id}</h6>
                                     </td>
+                                    <td>{data.answers}</td>
+                                    <td>{data.questions}</td>
                                   </tr>
                                 )
                               })}
@@ -52,7 +54,21 @@ const LeaderBoard = (props) => {
 };
 
  const mapStateToProps = ({ authedUser, questions, users }) => {
-   const usersData=Object.values(users)
+  const usersIds=Object.keys(users);
+  const usersData=Object.values(users)
+   
+  const usersDataTotals=usersData.map((data)=>{
+    const Obj = {};
+
+    Obj['id'] = data.id;
+    Obj['name'] = data.name;
+    Obj['avatarURL'] = data.avatarURL;
+    Obj['answers'] = Object.values(data.answers).length;
+    Obj['questions'] = Object.values(data.questions).length;
+      
+    return Obj;
+   })
+
   //  const author=users[usersIds].author
   //  const avatarURL=users[author].avatarURL
   //  const optionOne=questions[id].optionOne.text
@@ -81,7 +97,7 @@ const LeaderBoard = (props) => {
   //  console.log(optionOneBg)
   //  console.log(optionTwoBg)
     return {
-      usersData,
+      usersDataTotals,
       // id,
       // author,
       // avatarURL,
