@@ -19,7 +19,7 @@ const Header = (props) => {
               <LinkContainer to="/">
                 <Nav.Link>Home</Nav.Link>
               </LinkContainer>
-              <LinkContainer to="">
+              <LinkContainer to="/leaderboard">
                 <Nav.Link>Leaderboard</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/add">

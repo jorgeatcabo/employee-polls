@@ -65,7 +65,7 @@ const AnswerPage = (props) => {
                         <Card.Header>{props.optionOne}</Card.Header>
                           <Card.Body>
                               <Card.Title>{props.optionOneAnswered}/{props.numberOfUsers}</Card.Title>                              
-                              Pecent Voted: {props.optionOneAnswered/props.numberOfUsers} %
+                              Percent Voted: {props.optionOneAnswered/props.numberOfUsers} %
                           </Card.Body>
                       </Card>
                     </Col>
@@ -75,7 +75,7 @@ const AnswerPage = (props) => {
                         <Card.Header>{props.optionTwo}</Card.Header>
                           <Card.Body>
                             <Card.Title>{props.optionTwoAnswered}/{props.numberOfUsers}</Card.Title>                            
-                            Pecent Voted: {props.optionTwoAnswered/props.numberOfUsers} %
+                            Percent Voted: {props.optionTwoAnswered/props.numberOfUsers} %
                         </Card.Body>
                       </Card>
                     </Col>

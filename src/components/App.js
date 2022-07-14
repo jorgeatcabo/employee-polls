@@ -10,6 +10,8 @@ import Header from "./Header";
 import { Routes, Route } from "react-router-dom";
 import Login from "./Login";
 import AskLogin from "./AskLogin";
+import LeaderBoard from "./LeaderBoard";
+import FourOFour from "./FourOFour";
 
 
 const App = (props) => {
@@ -30,11 +32,13 @@ const App = (props) => {
             
             <Route path="/" exact element={(props.authedUser !=="LOGOUT" && props.authedUser !=="") ? (<Dashboard />):<AskLogin/>} />
             
-            <Route path="/questions/:id" element={(props.authedUser !=="LOGOUT" && props.authedUser !=="") ? (<QuestionPage/>):<AskLogin/>} />
+            <Route path="/questions/:id" element={(props.authedUser !=="LOGOUT" && props.authedUser !=="") ? (<QuestionPage/>):<FourOFour/>} />
            
             <Route path="/answers/:id" element={(props.authedUser !=="LOGOUT" && props.authedUser !=="") ? (<AnswerPage/>):<AskLogin/>} />
             
             <Route path="/add" element={(props.authedUser !=="LOGOUT" && props.authedUser !=="") ? (<AddQuestion />):<AskLogin/>} />
+            
+            <Route path="/leaderboard" element={(props.authedUser !=="LOGOUT" && props.authedUser !=="") ? (<LeaderBoard />):<AskLogin/>} />
             
           </Routes>          
       </div>
@@ -43,9 +47,6 @@ const App = (props) => {
 };
 
 const mapStateToProps = ({ authedUser }) => {
-
-
-  console.log(authedUser)
   
   return{
     loading: authedUser === null,

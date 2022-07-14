@@ -14,7 +14,7 @@ const withRouter = (Component) => {
   return ComponentWithRouterProp;
 };
 
-const QuestionPage = (props) => {
+const LeaderBoard = (props) => {
   
   const navigate = useNavigate();
 
@@ -51,34 +51,18 @@ const QuestionPage = (props) => {
   return (
     <div>
       <Container className='text-center'>
-        <h1>Poll by {props.author}</h1>
       <Card bg='info'>
       <Card.Img variant='top' src={props.avatarURL} width="130" height="130" alt={props.author} />
 
-          <Card.Header >Would You Rather</Card.Header>
+          <Card.Header >Leader Board</Card.Header>
               <Card.Body>
 
                   <Row>
 
                     <Col>
-                      <Card>
-                        <Card.Header>{props.optionOne}</Card.Header>
-                          <Card.Body>
-                              <Card.Title></Card.Title>
-                              <Button variant="primary"  onClick={handleChooseOptionOne} >Choose</Button>
-                          </Card.Body>
-                      </Card>
+
                     </Col>
 
-                    <Col>
-                      <Card>
-                        <Card.Header>{props.optionTwo}</Card.Header>
-                          <Card.Body>
-                            <Card.Title></Card.Title>
-                            <Button variant="primary" onClick={handleChooseOptionTwo} >Choose</Button>
-                        </Card.Body>
-                      </Card>
-                    </Col>
 
                   </Row>
 
@@ -89,29 +73,48 @@ const QuestionPage = (props) => {
   );
 };
 
- const mapStateToProps = ({ authedUser, questions, users }, props) => {
-   const id = props.router.params.id;
-   let author=""
-   let avatarURL=""
-   let optionOne=""
-   let optionTwo=""
+ const mapStateToProps = ({ authedUser, questions, users }) => {
+  // const usersIds=Object.keys(users);
+  //  const author=users[usersIds].author
+  //  const avatarURL=users[author].avatarURL
+  //  const optionOne=questions[id].optionOne.text
+  //  const optionTwo=questions[id].optionTwo.text
+  //  const optionOneAnswered=questions[id].optionOne.votes.length
+  //  const optionTwoAnswered=questions[id].optionTwo.votes.length
+  //  const numberOfUsers=Object.keys(users).length;
+  //  const optionOneSelected=questions[id].optionOne.votes.includes(authedUser)
+  //  const optionTwoSelected=questions[id].optionTwo.votes.includes(authedUser)
 
-   if (Object.entries(questions).length !== 0){
-    author=questions[id].author
-    avatarURL=users[author].avatarURL
-    optionOne=questions[id].optionOne.text
-    optionTwo=questions[id].optionTwo.text
-   }
+  //  console.log(optionOneSelected)
+  //  console.log(optionTwoSelected)
    
+
+  // let optionOneBg=""
+  // let optionTwoBg=""
+
+  //  if (optionOneSelected){
+  //   optionOneBg="success"
+  //  }
    
+  //  if (optionTwoSelected){
+  //   optionTwoBg="success"
+  //  }
+
+  //  console.log(optionOneBg)
+  //  console.log(optionTwoBg)
     return {
-      id,
-      author,
-      avatarURL,
-      optionOne,
-      optionTwo,
-      authedUser
+      // id,
+      // author,
+      // avatarURL,
+      // optionOne,
+      // optionTwo,
+      // authedUser,
+      // optionOneAnswered,
+      // optionTwoAnswered,
+      // numberOfUsers,
+      // optionOneBg,
+      // optionTwoBg,
     };
  };
 
-export default withRouter(connect(mapStateToProps)(QuestionPage));
+export default withRouter(connect(mapStateToProps)(LeaderBoard));
