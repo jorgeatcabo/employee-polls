@@ -28,6 +28,10 @@ export function handleAddQuestion(optionOneText, optionTwoText) {
       author: authedUser,
     })
       .then((question) => dispatch(addQuestion(question)))
+      .then(() => _getUsers()).then((users) => {
+        dispatch(receiveUsers(users)
+      )
+    })
       .then(() => dispatch(hideLoading()));
   };
 }
@@ -67,7 +71,6 @@ export function handleQuestionAnswer(info) {
       .then(() => _getUsers()).then((users) => {
         dispatch(receiveUsers(users)
       )
-      console.log(users)
     }).then(() => dispatch(hideLoading()));;
   };
 }

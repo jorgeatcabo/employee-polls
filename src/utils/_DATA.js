@@ -170,6 +170,17 @@ export let users = {
   
       const formattedQuestion = formatQuestion(question)
       setTimeout(() => {
+        users = {
+          ...users,
+          [question.author]: {
+            ...users[question.author],
+            questions: {
+              ...users[question.author].questions,
+              questions: users[question.author].questions.concat([formattedQuestion.id])
+            }
+          }
+        }
+
         questions = {
           ...questions,
           [formattedQuestion.id]: formattedQuestion
