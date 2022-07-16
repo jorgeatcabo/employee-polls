@@ -71,6 +71,7 @@ export function handleQuestionAnswer(info) {
       .then(() => _getUsers()).then((users) => {
         dispatch(receiveUsers(users)
       )
-    }).then(() => dispatch(hideLoading()));;
+    })
+    .then(() => dispatch(hideLoading()));;
   };
 }
