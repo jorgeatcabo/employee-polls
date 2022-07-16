@@ -22,21 +22,21 @@ const LeaderBoard = (props) => {
                           </tr>
                         </thead>
                         <tbody>
-                              {props.usersDataTotalsSort.map((data, key) => {
+                              {props.usersDataTotalsSorted.map((data, key) => {
                                 return (
                                   <tr key={key}>
                                     <td>
                                     <img
-                                      src={data[1].avatarURL} 
+                                      src={data.avatarURL} 
                                       width="30" 
                                       height="30" 
-                                      alt={data[1].name}
+                                      alt={data.name}
                                       />
-                                      <h5>{data[1].name}</h5>
-                                      <h6>{data[1].id}</h6>
+                                      <h5>{data.name}</h5>
+                                      <h6>{data.id}</h6>
                                     </td>
-                                    <td>{data[1].answers}</td>
-                                    <td>{data[1].questions}</td>
+                                    <td>{data.answers}</td>
+                                    <td>{data.questions}</td>
                                   </tr>
                                 )
                               })}
@@ -67,10 +67,22 @@ const LeaderBoard = (props) => {
     
     return Obj;
    })
-   const usersDataTotalsSort=Object.entries(usersDataTotals).sort((a,b) => b[1].answers-a[1].answers)
+
+   const dataToOrder=Object.values(usersDataTotals)
+
+   const usersDataTotalsSorted=dataToOrder.sort((a, b)=> {
+    
+    if (a.answers ===  b.answers){
+      return a.questions > b.questions ? -1 : 1
+    } else {
+      return a.answers > b.answers ? -1 : 1
+    }
+   })
+
+   //const usersDataTotalsSort=Object.entries(usersDataTotals).sort((a,b) => b[1].answers-a[1].answers)
    
     return {
-      usersDataTotalsSort,
+      usersDataTotalsSorted,
     };
  };
 
