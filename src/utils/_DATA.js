@@ -189,7 +189,6 @@ export let users = {
   }
   
   export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
-    //console.log(users[authedUser].answers)
     return new Promise((resolve, reject) => {
       if (!authedUser || !qid || !answer) {
         reject("Please provide authedUser, qid, and answer");
