@@ -1,5 +1,5 @@
 import {  saveQuestion,saveQuestionAnswer } from "../utils/api";
-import { _getUsers } from "../utils/_DATA";
+import { _getUsers, _getQuestions } from "../utils/_DATA";
 import { receiveUsers } from "./users";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
 
@@ -66,8 +66,8 @@ export function handleQuestionAnswer(info) {
       qid,
       answer,
     })
-      .then((question) =>{
-        dispatch(addQuestionAnswer(question))})
+      .then(() => _getQuestions()).then((questions) =>{
+        dispatch(addQuestionAnswer(questions))})
       .then(() => _getUsers()).then((users) => {
         dispatch(receiveUsers(users)
       )
@@ -75,3 +75,4 @@ export function handleQuestionAnswer(info) {
     .then(() => dispatch(hideLoading()));;
   };
 }
+

@@ -79,8 +79,6 @@ const LeaderBoard = (props) => {
     }
    })
 
-   //const usersDataTotalsSort=Object.entries(usersDataTotals).sort((a,b) => b[1].answers-a[1].answers)
-   
     return {
       usersDataTotalsSorted,
     };
