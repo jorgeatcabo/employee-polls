@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AddQuestion will match 1`] = `
+exports[`AnswerPage will match 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>

@@ -30,7 +30,6 @@ Object {
                 class="form-control"
                 id="first-option"
                 placeholder="Enter First Option"
-                required=""
                 type="text"
                 value=""
               />
@@ -47,16 +46,13 @@ Object {
                 class="form-control"
                 id="second-option"
                 placeholder="Enter Second Option"
-                required=""
                 type="text"
                 value=""
               />
             </div>
-            <div
-              class="form-check"
-            />
             <button
               class="btn btn-primary"
+              data-testid="submit-button"
               type="submit"
             >
               Submit
@@ -92,7 +88,6 @@ Object {
               class="form-control"
               id="first-option"
               placeholder="Enter First Option"
-              required=""
               type="text"
               value=""
             />
@@ -109,16 +104,13 @@ Object {
               class="form-control"
               id="second-option"
               placeholder="Enter Second Option"
-              required=""
               type="text"
               value=""
             />
           </div>
-          <div
-            class="form-check"
-          />
           <button
             class="btn btn-primary"
+            data-testid="submit-button"
             type="submit"
           >
             Submit

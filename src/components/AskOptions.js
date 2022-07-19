@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import {  Modal } from "react-bootstrap"
+import {  Modal} from "react-bootstrap"
 
 
-const AskLogin = (props) => {
+const AskOptions = (props) => {
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -19,7 +19,7 @@ const AskLogin = (props) => {
             <Modal show={show} onHide={handleClose}>
 
               <Modal.Header closeButton>
-                <Modal.Title>Please Login Selecting An User...</Modal.Title>
+                <Modal.Title>Please Enter Options...</Modal.Title>
               </Modal.Header>
 
             </Modal>
@@ -30,4 +30,4 @@ const AskLogin = (props) => {
 
 
 
-export default AskLogin;
+export default AskOptions;

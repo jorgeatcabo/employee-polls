@@ -8,7 +8,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 
 const store = createStore(reducer);
 
-describe('AddQuestion',()=>{
+describe('AskLogin',()=>{
     it('will match', ()=>{
         var view =render(
             <Provider store={store}>
