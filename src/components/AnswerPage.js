@@ -1,12 +1,11 @@
 import { connect } from "react-redux";
-import { handleQuestionAnswer } from "../actions/questions";
-import {Card, Button,Container,Row,Col} from 'react-bootstrap'
+import {Card,Container,Row,Col} from 'react-bootstrap'
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const withRouter = (Component) => {
   const ComponentWithRouterProp = (props) => {
     let location = useLocation();
-    let navigate = useNavigate();
+    var navigate = useNavigate();
     let params = useParams();
     return <Component {...props} router={{ location, navigate, params }} />;
   };
@@ -16,38 +15,6 @@ const withRouter = (Component) => {
 
 const AnswerPage = (props) => {
   
-  const navigate = useNavigate();
-
-  const handleChooseOptionOne = (e) => {
-    e.preventDefault();
-    const { dispatch, id, authedUser } = props;
-
-    dispatch(
-      handleQuestionAnswer({
-        authedUser,
-        qid: id,
-        answer:"optionOne",
-      })
-    );
-
-    navigate(`/`);
-  };
-
-  const handleChooseOptionTwo = (e) => {
-    e.preventDefault();
-    const { dispatch, id, authedUser } = props;
-
-    dispatch(
-      handleQuestionAnswer({
-        authedUser,
-        qid: id,
-        answer:"optionTwo",
-      })
-    );
-
-    navigate(`/`);
-  };
-
   return (
     <div>
       <Container className='text-center'>
@@ -101,7 +68,7 @@ const AnswerPage = (props) => {
   let optionTwoAnswered=""
   let numberOfUsers=0
 
-  if (Object.entries(questions).length !== 0){
+  if (Object.entries(questions).length !== 0 && questions[id]){
    author=questions[id].author
    avatarURL=users[author].avatarURL
    optionOne=questions[id].optionOne.text

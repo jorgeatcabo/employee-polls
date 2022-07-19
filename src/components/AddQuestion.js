@@ -11,18 +11,10 @@ const AddQuestion = ({ dispatch, id }) => {
   const [secondOption, setSecondOption]=useState("")
   const [showFirstOptionError, setFirstOptionError] = useState(false);
   const [showSecondOptionError, setSecondOptionError] = useState(false);
-  const [showOKMessage, setOKMessage] = useState(false);
   const handleCloseFirstOption = () => setFirstOptionError(false);
   const handleShowFirstOption = () => setFirstOptionError(true);  
   const handleCloseSecondOption = () => setSecondOptionError(false);
   const handleShowSecondOption = () => setSecondOptionError(true);  
-  const handleCloseOKMessage = () => setOKMessage(false);
-
-  const handleShowOKMessage = () =>  {
-    setOKMessage(true)
-
-    
-  };  
 
 
   const handleFirstOption = (e) => {        
@@ -113,15 +105,8 @@ const AddQuestion = ({ dispatch, id }) => {
             <Modal.Title>Please Enter Second Option...</Modal.Title>
           </Modal.Header>
 
-      </Modal>
+        </Modal>
 
-      <Modal  data-testid="ok-message-header" show={showOKMessage} onHide={handleCloseOKMessage}>
-
-        <Modal.Header closeButton>
-          <Modal.Title>Poll Created...</Modal.Title>
-        </Modal.Header>
-
-      </Modal>      
     </div>
   );
 };

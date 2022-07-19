@@ -1,23 +1,11 @@
 import {connect} from "react-redux";
-import  {useState} from 'react'
-import {  Form,Container,Row,Col } from "react-bootstrap"
+import {  Container,Row,Col } from "react-bootstrap"
 import NewQuestion from "./NewQuestion";
 import DoneQuestion from "./DoneQuestion";
 import {Card} from 'react-bootstrap'
-import { setAuthedUser } from "../actions/authedUser";
 
 const Dashboard=(props)=>{
   
-  const [userId, setUserId]=useState("")
-
-  const handleChange=(event)=>{
-
-  
-    const { dispatch } = props;
-    setUserId(event.target.value)
-
-    dispatch(setAuthedUser(event.target.value));
-  }
 
     return( 
         <div >
