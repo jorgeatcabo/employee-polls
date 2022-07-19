@@ -10,7 +10,7 @@ const NewQuestion=(props)=>{
     const toParent = (e, id) => {
         e.preventDefault();
     
-        navigate(`/questions/${id}`);
+        navigate(`/answers/${id}`);
       };
     
 
@@ -21,7 +21,7 @@ const NewQuestion=(props)=>{
 
     return(
         <div>
-            <Link to={`/questions/${id}`}>
+            <Link to={`/answers/${id}`}>
                 <Card>
                     <Card.Header>{props.author}</Card.Header>
                         <Card.Body>

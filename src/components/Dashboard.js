@@ -1,31 +1,56 @@
+import React, { useState } from 'react';
 import {connect} from "react-redux";
-import {  Container,Row,Col } from "react-bootstrap"
+import { Container,Row,Col } from "react-bootstrap"
 import NewQuestion from "./NewQuestion";
 import DoneQuestion from "./DoneQuestion";
+import Switch from "react-switch";
+
 import {Card} from 'react-bootstrap'
 
 const Dashboard=(props)=>{
-  
+  const [checked,setChecked]=useState(false)
+
+  const handleChange=(checked)=>{
+      setChecked(checked)
+  }
+
 
     return( 
-        <div >
-        
+        <div >        
         <Container className='text-center'>
-
-          <Card bg='warning'>
-                <Card.Header >Unanswered Questions</Card.Header>
-                    <Card.Body>
-                      <Row>
-                          {props.newQuestions.map((x) => (
-                            <Col key={x.id} sm={12} md={6} lg={4} xl={4}>
-                              <NewQuestion id={x.id} author={x.author} timestamp={x.timestamp}/>                 
-                            </Col>
-                          ))}    
-                      </Row>
-                    </Card.Body>
-            </Card>
-
-            <Card bg='success'>
+            <label htmlFor="material-switch">
+              <span>Unanswered Polls</span>
+              <Switch
+                checked={checked}
+                onChange={handleChange}
+                onColor="#86d3ff"
+                onHandleColor="#2693e6"
+                handleDiameter={30}
+                uncheckedIcon={false}
+                checkedIcon={false}
+                boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
+                activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
+                height={20}
+                width={48}
+                className="react-switch"
+                id="material-switch"
+              />
+              <span>Answered Polls</span>
+            </label>
+            {!checked?
+                      <Card bg='warning'>
+                      <Card.Header >Unanswered Questions</Card.Header>
+                          <Card.Body>
+                            <Row>
+                                {props.newQuestions.map((x) => (
+                                  <Col key={x.id} sm={12} md={6} lg={4} xl={4}>
+                                    <NewQuestion id={x.id} author={x.author} timestamp={x.timestamp}/>                 
+                                  </Col>
+                                ))}    
+                            </Row>
+                          </Card.Body>
+                  </Card>:
+                  <Card bg='success'>
                 <Card.Header>Answered Questions</Card.Header>
                     <Card.Body>
                       <Row>
@@ -36,7 +61,10 @@ const Dashboard=(props)=>{
                           ))}    
                       </Row>
                     </Card.Body>
-            </Card>
+            </Card>}  
+
+
+
 
       </Container>
 
