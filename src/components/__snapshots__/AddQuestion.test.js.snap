@@ -28,6 +28,7 @@ Object {
               </label>
               <input
                 class="form-control"
+                data-testid="first-option-input"
                 id="first-option"
                 placeholder="Enter First Option"
                 type="text"
@@ -44,6 +45,7 @@ Object {
               </label>
               <input
                 class="form-control"
+                data-testid="second-option-input"
                 id="second-option"
                 placeholder="Enter Second Option"
                 type="text"
@@ -86,6 +88,7 @@ Object {
             </label>
             <input
               class="form-control"
+              data-testid="first-option-input"
               id="first-option"
               placeholder="Enter First Option"
               type="text"
@@ -102,6 +105,7 @@ Object {
             </label>
             <input
               class="form-control"
+              data-testid="second-option-input"
               id="second-option"
               placeholder="Enter Second Option"
               type="text"

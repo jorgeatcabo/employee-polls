@@ -16,13 +16,13 @@ const AddQuestion = ({ dispatch, id }) => {
   const handleShowFirstOption = () => setFirstOptionError(true);  
   const handleCloseSecondOption = () => setSecondOptionError(false);
   const handleShowSecondOption = () => setSecondOptionError(true);  
-  const handleCloseOKMessage = () => {
-    setOKMessage(false)
-    if (!id) {
-      navigate("/");
-    }
-  };
-  const handleShowOKMessage = () => setOKMessage(true);  
+  const handleCloseOKMessage = () => setOKMessage(false);
+
+  const handleShowOKMessage = () =>  {
+    setOKMessage(true)
+
+    
+  };  
 
 
   const handleFirstOption = (e) => {        
@@ -47,14 +47,17 @@ const AddQuestion = ({ dispatch, id }) => {
       return;
     }
 
-    
-    handleShowOKMessage()
 
 
     dispatch(handleAddQuestion(firstOption,secondOption));
 
     setFirstOption("");
     setSecondOption("");
+   
+
+    if (!id) {
+      navigate("/");
+    }
 
   };
 
@@ -70,7 +73,8 @@ const AddQuestion = ({ dispatch, id }) => {
                 <label htmlFor="first-option">First Option</label>
                 <input type="text" 
                     className="form-control" 
-                    id="first-option"             
+                    id="first-option"   
+                    data-testid="first-option-input"
                     placeholder="Enter First Option" 
                     value={firstOption}
                     onChange={handleFirstOption}
@@ -81,6 +85,7 @@ const AddQuestion = ({ dispatch, id }) => {
                 <input type="text" 
                     className="form-control" 
                     id="second-option" 
+                    data-testid="second-option-input"
                     placeholder="Enter Second Option"
                     value={secondOption}
                     onChange={handleSecondOption} 
