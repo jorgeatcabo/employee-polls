@@ -10,7 +10,7 @@ const DoneQuestion=(props)=>{
     const toParent = (e, id) => {
         e.preventDefault();
     
-        navigate(`/answers/${id}`);
+        navigate(`/questions/${id}`);
       };
     
 
@@ -21,7 +21,7 @@ const DoneQuestion=(props)=>{
 
     return(
         <div>
-            <Link to={`/answers/${id}`}>
+            <Link to={`/questions/${id}`}>
                 <Card>
                     <Card.Header>{props.author}</Card.Header>
                         <Card.Body>

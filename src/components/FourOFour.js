@@ -1,11 +1,9 @@
 import {Card, Container,Row,Col} from 'react-bootstrap'
-import AskLogin from './AskLogin'
 
 const FourOFour = (props) => {
 
   return (
     <div>
-      <AskLogin/>
       <Container className='text-center'>
 
                   <Row className='text-center'>

@@ -30,7 +30,7 @@ const QuestionPage = (props) => {
       })
     );
 
-    navigate(`/answers/${id}`);
+    navigate(`/questions/${id}`);
   };
 
   const handleChooseOptionTwo = (e) => {
@@ -45,7 +45,7 @@ const QuestionPage = (props) => {
       })
     );
 
-    navigate(`/answers/${id}`);
+    navigate(`/questions/${id}`);
   };
 
   return (
@@ -96,7 +96,7 @@ const QuestionPage = (props) => {
    let optionOne=""
    let optionTwo=""
 
-   if (Object.entries(questions).length !== 0){
+   if (Object.entries(questions).length !== 0 && questions[id]){
     author=questions[id].author
     avatarURL=users[author].avatarURL
     optionOne=questions[id].optionOne.text
