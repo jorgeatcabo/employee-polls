@@ -30,7 +30,7 @@ const QuestionPage = (props) => {
       })
     );
 
-    navigate(`/questions/${id}`);
+    navigate(`/answers/${id}`);
   };
 
   const handleChooseOptionTwo = (e) => {
@@ -45,7 +45,7 @@ const QuestionPage = (props) => {
       })
     );
 
-    navigate(`/questions/${id}`);
+    navigate(`/answers/${id}`);
   };
 
   return (

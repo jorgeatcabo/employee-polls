@@ -10,7 +10,7 @@ const DoneQuestion=(props)=>{
     const toParent = (e, id) => {
         e.preventDefault();
     
-        navigate(`/questions/${id}`);
+        navigate(`/answers/${id}`);
       };
     
 
